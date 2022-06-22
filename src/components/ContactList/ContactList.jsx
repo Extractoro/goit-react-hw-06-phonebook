@@ -22,9 +22,7 @@ const ContactList = () => {
         {renderContacts.map(({ id, name, number }) => (
           <li key={id} id={id} className={s['item']}>
             <button
-              onClick={e =>
-                dispatch(deleteContacts(e.currentTarget.parentNode.id))
-              }
+              onClick={() => dispatch(deleteContacts(id))}
               className={s['button']}
               type="Submit"
             >
