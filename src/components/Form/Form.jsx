@@ -3,12 +3,11 @@ import s from './Form.module.css';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContacts, getItems } from 'redux/contactsSlice';
 
-export const Form = () => {
+const Form = () => {
+  const contacts = useSelector(getItems);
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -38,7 +37,7 @@ export const Form = () => {
         name,
         number,
       };
-      dispatch(addContact(contact));
+      dispatch(addContacts(contact));
       reset();
     }
   };
@@ -98,3 +97,5 @@ export const Form = () => {
     </form>
   );
 };
+
+export default Form;
